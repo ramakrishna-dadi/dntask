@@ -1,0 +1,25 @@
+.header{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    background-color: #3f51b5;
+    color: white;
+    text-align: center;
+   
+}
+.container{
+    margin: 5% 10%;
+}
+.footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #3f51b5;
+    color: white;
+    text-align: center;
+}
+.loader-margin {
+    margin: 0 10px;
+  }

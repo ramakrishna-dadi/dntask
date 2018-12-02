@@ -1,17 +1,75 @@
-<header color="primary">
-<mat-toolbar>
-  Header
-</mat-toolbar>
+<!-- Header -->
+<header class="header" >
+  <h3>Yahoo Weather API</h3>
 </header>
-<main>
-Body
+
+<!-- Main Content -->
+<main class="container"> 
+    <mat-card>
+        <mat-form-field>
+          <mat-select [(value)]="selected_city" placeholder="Select city" (selectionChange)="getWeatherData($event)">
+            <mat-option *ngFor="let city of cities" [value]="city">
+              {{city}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-card>
+         <div *ngIf="!loader_show;else loader_block">
+            <mat-card-header> 
+                <mat-card-title>
+                  <h4 class="mat-h1 mat-headline">Weather IN {{selected_city}}</h4>
+                  <mat-divider></mat-divider>
+                </mat-card-title>
+                
+            </mat-card-header>
+            <mat-card-content>
+              <mat-list>
+                <mat-list-item>
+                  <b>Title: </b>&nbsp;&nbsp;{{output.query.results.channel.title}}
+                </mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>
+                  <b>Created: </b>&nbsp;&nbsp; {{output.query.created}}
+                </mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>
+                  <b>Temperature: </b>&nbsp;&nbsp; {{output.query.results.channel.item.condition.temp}} {{output.query.results.channel.units.temperature}} - {{output.query.results.channel.item.condition.text}}
+                </mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>
+                    <b>Humidity: </b>&nbsp;&nbsp; {{output.query.results.channel.atmosphere.humidity}}
+                </mat-list-item>
+
+                <mat-divider></mat-divider>
+                <mat-list-item>
+                    <b>Wind Direction: </b>&nbsp;&nbsp; {{output.query.results.channel.wind.direction}}
+                </mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>
+                    <b>Wind Speed: </b>&nbsp;&nbsp; {{output.query.results.channel.wind.speed}} {{output.query.results.channel.units.speed}}
+                </mat-list-item>
+
+                <mat-divider></mat-divider>
+                <mat-list-item>
+                    <b>Sunrise: </b>&nbsp;&nbsp; {{output.query.results.channel.astronomy.sunrise}}
+                </mat-list-item>
+                <mat-divider></mat-divider>
+                <mat-list-item>
+                    <b>Sunset: </b>&nbsp;&nbsp; {{output.query.results.channel.astronomy.sunset}}
+                </mat-list-item>
+              </mat-list>
+            </mat-card-content>
+          </div>
+          <ng-template #loader_block>
+              <mat-spinner>Loading Data...</mat-spinner>
+          </ng-template>
+
+      </mat-card>
+    </mat-card>
 </main>
-<footer>
-  <div layout="row" layout-align="center center">
-      <h2>My Awesome Footer</h2>
-  </div>
-</footer>
-<footer><mat-toolbar color="primary">
-  Footer
-</mat-toolbar>
+
+<!-- Footer -->
+<footer class="footer">
+  <p>Digital Nirvana &copy; 2018. All rights reserved. </p>
+
 </footer>
